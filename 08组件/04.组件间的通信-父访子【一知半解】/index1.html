@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <div ref="dom">这是一个div</div> -->
+        <div ref="dom" v-for="item in 5">这是一个div</div>
+    </div>
+    <script>
+        // 引用ref，可以放到dom上也可以放在组件上。
+        const vue = new Vue({
+            el:"#app",
+            mounted() {
+                // 不能给多个元素设置相同的ref，会覆盖之前的。特殊情况v-for能返回一个全部的 数组
+                // console.log( this.$refs.dom ); // 得到一个我是div的dom元素
+                console.log( this.$refs.dom ); // 返回一个数组[div, div, div, div, div]
+            },
+        })
+    </script>
+</body>
+</html>

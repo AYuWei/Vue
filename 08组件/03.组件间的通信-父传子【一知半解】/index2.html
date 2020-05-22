@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <new-list :title="title" :content="content"></new-list>
+    </div>
+    <script>
+        const vue = new Vue({
+            el : "#app",
+            data : {
+                title : "我是标题我是标题我是标题我是标题！",
+                content : "我是文本内容我是文本内容我是文本内容！"
+            },
+            components : {
+                newList : {
+                    created() {
+                        console.log(this.$attrs, this.$parent)
+                        this.title = this.$parent.title;
+                    },
+                    template : `
+                        <div>
+                            <p>{{title}}</p>
+                            <my-p></my-p>
+                        </div>
+                    `,
+                    components : {
+                        myP : {
+                            created() {
+                              
+                                this.content = this.$parent.$parent.content;
+                            },
+                            inheritAttrs: false, // 设置是否能在元素中看到数据。
+                            template : "<p>{{content}}</p>"
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        {{ msg }}
+    </div>
+    <script>
+        // el ： --y--> div#app.outerHTML("<div id="app">{{msg}}</div>"作为模板) --> AST({}) --> render -->Vnode--> 真实的dom(<div id="app">hello</div>) -> 替换  
+              // --n--> $mount  --y--> div#app.outerHTML("<div id="app">{{msg}}</div>"作为模板) -> ....
+                             // --n--> X
+    
+        // el --y--> template --> y --> '<h2>{{ msg }}</h2>'  -> AST --> 。。。
+                           // --> n-->  el.outerHTml         -> AST  -> 。。。
+        const vue = new Vue({
+            el : "#app",
+            template : "<h2>{{ msg }}</h2>", // 这个会覆盖#ppa元素
+            // 第一个参数为 createElement
+            // createElement("标签", {配置} , "文本内容");
+            render( createElement ){
+               return createElement("h1", {
+                   class : "haha",
+                   style : {
+                       color : "red",
+                       fontSize : "12px"
+                   }
+               } , "我是一个H1标题")
+            },
+            data : {
+                msg : "this is div"
+            }
+        
+        });
+        console.log( vue.$el.outerHTML ); // <div id="app"> {{ msg }}</div>
+    </script>
+</body>
+</html>

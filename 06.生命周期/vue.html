@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+       <div> {{ msg }}</div>
+    </div>
+    <script>
+        const vue = new Vue({
+            el : "#app",
+            data : {
+                msg : "我是一个没事干"
+            },
+            beforeCreate(){
+                // 不能获取data里面的数据。
+                console.log("初始化-beforeCreate",this.$data);
+            },
+            created(){
+                // 可以再次调用ajax
+                console.log("初始化完成-created");
+            },
+            mounted() {
+                // 挂载 能拿到元素
+                console.log("挂载完毕-mounted");
+            },
+            beforeUpdate() {
+                console.log("更改指令-beforeUpdate");
+            },
+            updated() {
+                console.log("更改完毕-updated");
+            },
+            beforeDestroy() {
+                // 能销毁定时器等。
+                console.log("销毁-beforeDestroy");
+                // vue.$destroy()执行
+            },
+            destroyed() {
+                console.log("销毁完成-destroyed")
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+    <link rel="stylesheet" href="./demo.css">
+</head>
+
+<body>
+    <div id="app">
+        <newsList :news-list="newsList"></newsList>
+    </div>
+    <script>
+        const vue = new Vue({
+            el: "#app",
+            data: {
+                newsList: [
+                    {
+                        title: '周冬雨被爆恋情',
+                        index: '1235万',
+                        id: 0
+                    },
+                    {
+                        title: '赵立新注销微博',
+                        index: '1140万',
+                        id: 1
+                    },
+                    {
+                        title: '凉山冕宁发生火灾',
+                        index: '1053万',
+                        id: 2
+                    },
+                    {
+                        title: '字母哥帽恩比德',
+                        index: '996万',
+                        id: 3
+                    },
+                    {
+                        title: '曝紫辉创投CEO骗婚',
+                        index: '987万',
+                        id: 4
+                    },
+                    {
+                        title: '南京2.8级地震',
+                        index: '789万',
+                        id: 5
+                    },
+                    {
+                        title: '韩国发生森林大火',
+                        index: '759万',
+                        id: 6
+                    },
+                    {
+                        title: '消防收神秘礼物',
+                        index: '711万',
+                        id: 7
+                    }
+                ]
+            },
+
+            components: {
+                newslist: {
+                    props: ["newsList"],
+                    template: ` <ul>
+                                    <h3>搜索热度</h3>
+                                    <news
+                                         v-for="(item, index) in newsList"
+                                         :key="item.id"
+                                         :title = "item.title"
+                                         :index = "item.index"
+                                         :ranking = 'index + 1'
+                                         ></news>
+                                </ul>`,
+
+
+                    components: {
+                        news: {
+                            created() {
+                                switch (this.ranking) {
+                                    case 1:
+                                        this.hotClass = "one";
+                                        return;
+                                    case 2:
+                                        this.hotClass = "two";
+                                        return;
+                                    case 3:
+                                        this.hotClass = "fo";
+                                        return;
+                                    default:return;
+                                }
+                            },
+                            data(){
+                                return {
+                                    hotClass : ''
+                                }
+                            },
+                            props: ["title", 'index', 'ranking'],
+                            template: `<li class="newsleft">
+                                            <div class="Left">
+                                                <div class="left" :class="hotClass">{{ranking}}</div>
+                                                <div class="right">{{ title }}</div>
+                                            </div>
+                                            <div class="Right">
+                                                <div>{{ index }}</div>
+                                            </div>    
+                                        </li>`
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

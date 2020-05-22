@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+    <!--    方法中    -->
+    <!-- <div>我是{{name}}，今年{{ age }}</di>-->
+
+    <!--    计算属性中    -->
+    <!--        <div>-->
+    <!--            {{ person }}-->
+    <!--            {{ set }}-->
+    <!--        </div>-->
+
+    <!--    监听器    -->
+        <div>{{ person }}</div>
+    </div>
+    <script>
+        const vue = new Vue({
+            el : "#app",
+            data : {
+                name : "张三",
+                age : 21,
+                set : "男",
+                person : ''
+            },
+            // 方法  --执行person();
+            // methods: {
+            //     // 当页面某处数据发生改变的时候也会重新渲染数据。
+            //     // 原本我们并不改变现在的数据的，但是改变了其他页面的数据则会重新渲染。（消耗性能）
+            //     person(){
+            //         console.log("person")
+            //         return `我是${ this.name }，今年${ this.age }`;
+            //     }
+            // },
+
+            // 计算属性(函数的形式)  -- 执行person,不是函数的形式，会自动调用
+            // computed : {
+            //     person(){
+            //         // 计算属性相当于做了一层缓存,每次都从缓存中拿值。
+            //         // 当页面的数据不涉及到这里的数据的时候，这个数据不会重新渲染。**只有涉及到这里的数据更改后才会这些**
+            //         console.log('computed')
+            //         return `我是${ this.name }，今年${ this.age }`;
+            //     }
+            // }
+
+            // 计算属性（对象的形式）
+            // computed : {
+            //     // 执行 vue.name vue.age等。
+            //     person :{
+            //         get(){
+            //             console.log("this is computed in obj get")
+            //             return `我是${ this.name }，今年${ this.age }`;
+            //         },
+            //         set(val){ // 执行 vue.person = "ss"
+            //             console.log("this is computed in obj set!" , val);
+            //         }
+            //     }
+            // }
+
+            // 监听器
+            // 被观察的属性变化，就会执行响应的函数。
+            // 首次属性不执行，可以配合methodse和生命周期函数来实现。
+
+            // methods : {
+            //     getPerson(){
+            //         this.person = `我是${ this.name }，今年${ this.age }`;
+            //     }
+            // },
+            // mounted(){
+            //     this.getPerson();
+            // },
+            // 函数的形式
+            // watch : {
+            //     name (newVal){
+            //         console.log("watch-name")
+            //         this.person = `我是${ newVal }，今年${ this.age }`;
+            //     },
+            //     age (newVal) {
+            //         console.log("watch-name")
+            //         this.person = `我是${ this.name }，今年${ newVal }`;
+            //     }
+            // }
+
+            watch : {
+                name : {
+                    handler(newVal){
+                        this.person = `我是${ newVal }，今年${ this.age }`;
+                    },
+                    immediate : true // 是否一开始就执行
+                },
+                age : {
+                    handler(newVal){
+                        this.person = `我是${ this.name }，今年${ newVal }`;
+                    },
+                    immediate : true // 是否一开始就执行
+                }
+            }
+
+
+        })
+    </script>
+</body>
+</html>

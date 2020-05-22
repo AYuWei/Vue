@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-slice="content">
+        {{ content }}
+    </div>
+    <script>
+        // 第一个参数为名称，第二个参数可以是函数或者对象
+        Vue.directive("slice", (el, bindings, vnode) => {
+            console.log(el); // 该事件的dom元素
+            console.log(bindings); // 包含指令信息 和 
+            console.log(vnode);// 虚拟dom
+        })
+        const vue = new Vue({
+            el : "#app",
+            data : {
+                content : ""
+            }
+        })
+    </script>
+</body>
+</html>

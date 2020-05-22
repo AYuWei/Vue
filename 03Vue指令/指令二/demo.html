@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+            height: 150px;
+            display: block;
+            
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <img v-bind:src="imgUrl" alt="">
+    </div>
+    <script>
+        const vue = new Vue({
+            el : "#app",
+            data : {
+                imgUrl : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2246792195,267142679&fm=27&gp=0.jpg"
+            }
+        })
+    </script>
+</body>
+</html>

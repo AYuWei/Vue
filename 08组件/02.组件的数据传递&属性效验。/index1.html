@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+
+<body>
+    <div id="app">
+        <hello-world a='1' b='1' :title="title" :content="content"></hello-world>
+    </div>
+    <script>
+        const vue = new Vue({
+            el: "#app",
+            data : {
+                title : "卡上老地方",
+                content : "是打发傻傻地发阿斯蒂芬"
+            },
+            components: {
+                helloWorld : {
+                    props : ['a','b',"title","content"],
+                    // required : true,
+                   template : `<div>
+                        <p>{{ a }}</p>
+                        <p>{{ b }}</p>
+                        <p>{{ title }}</p>
+                        <p>{{ content }}</p>
+                   </div>`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

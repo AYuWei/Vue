@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-slice="content" v-model="content">
+        {{ content }}
+    </div>
+    <script>
+        // 自定义属性 局部
+         const vue = new Vue({
+             el : "#app",
+             data : {
+                 content : "11"
+             },
+             directives : {
+                 slice : (el , bindings, vnode)=>{
+                     console.log(el);
+                     console.log(bindings);
+                     console.log(vnode);
+                 }
+             },
+         })
+    </script>
+
+</body>
+</html>

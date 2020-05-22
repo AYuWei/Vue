@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        <!-- text -->
+        <input type="text" v-model="content">{{ content }}
+        
+        <!-- textarea -->
+        <textarea v-model="content"></textarea>{{ content }}
+
+        <!-- input checkbox -->
+        <label for="cg">成哥</label>
+        <input type="checkbox" id="cg" value="cg" v-model="checked">
+        <label for="ctg">思彤哥</label>
+        <input type="checkbox" id="ctg" value="ctg" v-model="checked">
+        <label for="dg">邓哥</label>
+        <input type="checkbox" id="dg" value="dg" v-model="checked">
+        {{ checked }}
+
+        <!-- radio -->
+        <label for="cg">成哥</label>
+        <input type="radio" name="radio" id="cg" value="cg" v-model="radioed">
+        <label for="dg">邓哥</label>
+        <input type="radio" name="radio" id="cg" value="dg" v-model="radioed">
+        <label for="st">思彤</label>
+        <input type="radio" name="radio" id="cg" value="st" v-model="radioed">
+        {{ radioed }}
+
+            
+        <label for="cg">成哥</label>
+        <input type="checkbox" id="cg" v-model="checkedd">
+        {{ checkedd }}
+
+        <!-- 单选框实现不了true和false判断 -->
+        <label for="st">思彤</label>
+        <input type="radio" id="cg"  v-model="radioed">
+        {{ radiodd }}  
+
+
+        <!-- select单选 -->
+        <select v-model="selected">
+            <option value="" disabled>请选择</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+        {{ selected }}
+
+
+        <!-- select多选 -->
+        <select v-model="selecteds" multiple>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+        {{ selecteds }}
+    </div>
+    <script>
+        const vue = new Vue({
+            el : '#app',
+            data : {
+                content : '',
+                checked : [],
+                radioed : "",
+                checkedd : false,
+                radiodd : false,
+                selected : '',
+                selecteds : []
+            }
+        })
+    </script>
+</body>
+</html>

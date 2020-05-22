@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        <my-index></my-index>
+        <hr>
+        <my-content></my-content>
+    </div>
+    <script>
+        Vue.prototype.bus = new Vue();
+        const vue = new Vue({
+            el:"#app",
+            components : {
+                myContent : {
+                    data(){
+                        return {
+                            content : ''
+                        }
+                    },
+                    created() {
+                        this.bus.$on("click",(result) => {
+                            this.content = result;
+                        })
+                    },
+                    template : `<div>{{ content }}</div>`
+                },
+                myIndex : {
+                    data(){
+                        return{
+                            inputVal : ''
+                        }
+                    },
+                    methods: {
+                        handleClick(){
+                            // 在vue实例中可以触发事件
+                            console.log(this.inputVal)
+                            this.bus.$emit("click",this.inputVal)
+                            console.log(this.bus)
+                        }  
+                    },
+                    template : `<div><input type="text" v-model="inputVal" />
+                                <button @click="handleClick">刷新</button></div>`
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

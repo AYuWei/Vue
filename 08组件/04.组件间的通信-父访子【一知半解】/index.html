@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        <my-premt></my-premt>
+    </div>
+    <script>
+        const vue = new Vue({
+            el:"#app",
+            mounted() {
+                console.log(this.$children[0].msg); // 不推荐用，官方也不推荐
+                this.$children[0].comFunc();
+
+            },
+            components : {
+                myPremt : {
+                    data (){
+                        return {
+                            msg : "hello world!"
+                        }
+                    },
+                    methods: {
+                        comFunc(){
+                            console.log("子组件")
+                        }
+                    },
+                    template : `<div>我是子组件</div>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

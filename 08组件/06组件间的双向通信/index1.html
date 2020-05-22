@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        <div>当前数据 ： {{count}}</div>
+        <hr>
+        <!-- :value= "count" 绑定数据count则value就是响应的数据 -->
+        <my-content :value="count" @handle="handle"></my-content>
+    </div>
+    <script>
+        // 双项数据流 -- 只能用不能改
+        Vue.component('myContent',{
+            props : ['value'],
+            mounted() {
+                setInterval(()=>{
+                    console.log(this.value); // 100
+                    let value= this.value + 1;
+                    this.$emit("handle",value); // 主动触发事件, 父组件休要注册事件 @handle="handle"
+                },1000)
+            }, 
+            template : '<div>{{ value }}</div>',
+        })
+        const vue = new Vue({
+            el : "#app",
+            data : {  // this是window
+                count : 100,
+            },
+            methods: {
+                // 父组件内接收。
+                handle(value){
+                    this.count = value;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

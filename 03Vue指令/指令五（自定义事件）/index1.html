@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-slice:11.number="content">
+        {{ content }}
+    </div>
+    <script>
+        // 第一个参数为名称，第二个参数可以是函数或者对象
+
+        // 这个函数等于bind， 和 update
+        // Vue.directive("slice",(el, bindings, vnode)=>{
+        //     const val = bindings.value.slice(0,5);
+        //     vnode.context.content = val;
+        //     console.log(bindings); //  里面有def记录着bind He update
+        // })
+
+        Vue.directive("slice", {
+            // 开始时候只执行一次
+            bind(el, bindings, vnode) {
+                const length = bindings.arg || 5;
+                let context = vnode.context[bindings.expression].slice(0, length);
+                const numberFlag = bindings.modifiers.number;
+                if (numberFlag) {
+                    context = context.replace(/[^0-9]/g, '');
+                }
+                el.value = context;//开始得值
+                vnode.context.content = context;
+
+                // 文本框的改变
+                el.oninput = e => {
+                    let value = e.target.value;
+                    if (numberFlag) {
+                        value = value.replace(/[^0-9]/g, '');
+                    }
+                    const val = value.slice(0, length);
+                    e.target.value = val;
+                    vnode.context[bindings.expression] = val;
+                   
+                }
+
+            },
+            // 虚拟dom改变的时候执行
+            update(el, bindings, vnode) {
+                const value = vnode.context[bindings.expression];
+                const length = bindings.arg || 5;
+                const numberFlag = bindings.modifiers.number;
+                let val = value.slice(0, length);
+                if (numberFlag) {
+                    val = val.replace(/[^0-9]/g, '');
+                }
+                el.value = val;
+                vnode.context.content = val;
+               
+            },
+            // 插入到页面的时候执行
+            inserted(el) {
+                el.focus(); //让input聚焦
+            }
+        })
+        const vue = new Vue({
+            el: "#app",
+            data: {
+                content: "aa234sdasd"
+            }
+        })
+    </script>
+</body>
+
+</html>

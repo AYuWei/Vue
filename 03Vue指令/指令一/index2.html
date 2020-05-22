@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- this is content! -->
+        <div v-if="flat">{{ text }}</div>
+        <div v-else>{{ name }}</div>
+
+        <template v-if="flat">
+            <div>
+                shanshan
+            </div>
+            <div>
+                beautiful
+            </div>
+        </template>
+    </div>
+    <script>
+        const vue = new Vue({
+            el : "#app",
+            data : {
+               flat : true,
+               text : "this is content!",
+               name : "yuwei"
+            }
+        });
+        
+        setInterval(()=>{
+            vue.flat = !vue.flat;
+        },1000)
+
+    </script>
+</body>
+</html>

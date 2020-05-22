@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+    <div id="app">
+        数字相加 ： <input type="text" v-model.number="firstCount"/> +
+                   <input type="text" v-model.number="lastCount"/></br>
+    累加结果 ： <input type="text" v-model="sum"/>
+
+    </div>
+    <script>
+        const vue = new Vue({
+            el : "#app",
+            data: {
+                firstCount : null,
+                lastCount : null,
+            },
+            computed : {
+                sum : {
+                    get(){
+                        if(!this.firstCount && !this.lastCount){
+                            return null;
+                        }
+                        return this.firstCount + this.lastCount;
+                    },
+                    set(val){
+                        const result = val / 2;
+                        this.firstCount = result;
+                        this.lastCount = result;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

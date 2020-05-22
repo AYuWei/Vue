@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="flag">
+            <label for="name">名字</label>
+            <input type="text" key="name" id="name">
+        </div>
+        <div v-else>
+            <label for="age">年龄</label>
+            <input type="text" id="age" key="age">
+        </div>
+        <button @click="change">切换</button>
+    </div>
+    <script>
+        const vue = new Vue({
+            el : "#app",
+            data : {
+                flag : true,
+            },
+            methods: {
+                change(){
+                    this.flag = !this.flag
+                }
+            },
+        })
+    </script>
+</body>
+</html>

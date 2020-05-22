@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        {{ monet | toMonet(2) }}
+    </div>
+    <script>
+        // 全局挂载
+
+        // item为 | 前一个的数据
+        // times为接收过来的参数。
+        // return 一个值。
+        Vue.filter("toMonet", (item, times) => {
+            console.log(item,times)
+            return item.toLocaleString();
+        })
+        const vue = new Vue({
+            el : "#app",
+            data : {
+                monet : 1000000
+            },
+            filters : {
+                toMonet : (item, times) => {
+                    console.log(item, times);
+    
+                    return item.toLocaleString();
+                }
+            }
+        })
+    </script>
+</body>
+</html>

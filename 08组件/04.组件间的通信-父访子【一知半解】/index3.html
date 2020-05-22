@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+<body>
+    <div id="app">
+        <my-p ref="dom"></my-p>
+    </div>
+    <script>
+        // 引用ref，可以放到dom上也可以放在组件上。
+        const vue = new Vue({
+            el:"#app",
+            mounted() {
+                console.log( this.$refs.dom ); // 返回components实例
+                this.$refs.dom.comFunc(); // 执行
+            },
+            components : {
+                myP : {
+                    data (){
+                        return {
+                            msg : "hello world!"
+                        }
+                    },
+                    methods: {
+                        comFunc(){
+                            console.log("子组件");
+                        }
+                    },
+                    template : `<P>我是子组件</P>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+
+<body>
+    <div id="app">
+        <hello-world></hello-world>
+    </div>
+    <template id="myul">
+        <div>
+            <p>我是帅哥</p>
+            <P>今年十八</P>
+        </div>
+    </template>
+    <script>
+        const vue = new Vue({
+            el: "#app",
+            components: {
+                'helloWorld': {
+                   template : "#myul"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

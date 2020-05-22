@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- {{ name }} -->
+        <div v-pre>{{ name }}</div> 
+        <!-- 张三 -->
+        <div v-cloak>{{ name }}</div>
+        <!-- 张三 -->
+        <div v-once>{{ name }}</div>
+        <!-- this is my beautiful -->
+        <div v-html=domHtml></div>
+        <!-- so so yeas -->
+        <div v-text=domText></div>
+    </div>
+    <script>
+        const vue = new Vue({
+            el : "#app",
+            data : {
+                name : "张三",
+                domHtml : "<span>this is my beautiful</span>",
+                domText : "so so yeas"
+            }
+        });
+        // v-once还是张三，v-cloak变为李四
+        vue.name = "李四"; 
+    </script>
+</body>
+</html>

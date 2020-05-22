@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <span>姓名：{{ name }}</span></br>
+        <span>年龄：{{ set }}</span> <br>
+        {{ arr }} <br>
+        {{ obj }} <br>
+
+    </div>
+    <script>
+        var a = 22;
+        const vue = new Vue({
+            // el : "#app",
+            data : {
+                name : "宇威",
+                set : 21,
+                arr : [1,2,3],
+                obj : {
+                    a : 1,
+                    b : 2
+                }
+            }
+        });
+        vue.$mount('#app')
+
+        vue.arr.push(3);
+        vue.arr.shift();
+
+        vue.obj["c"] = "33";
+        vue.$set(vue.obj, "d" , 90) // 添加
+
+        vue.name = 'sss';
+        vue.set = 11;
+        vue.$nextTick(()=>{
+            console.log( vue.$el.innerText ) //  输出data中的所有数字
+        })
+    </script>
+</body>
+</html>

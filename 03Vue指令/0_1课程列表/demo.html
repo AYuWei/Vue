@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./demo.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul class="wrapper">
+            <li class="lits" v-for="item in courseList">
+                <img class="imags" :src="item.poster" :alt="item.name">
+                <h4 v-text="item.name" class="title"></h4>
+                <div class="conten">
+                    <span class="jiage" :class="{free : item.free}">{{ item.free ? "免费" : "¥ " + item.price }}</span>
+                    <span class="mingcheng">渡一教育</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vue = new Vue({
+            el: "#app",
+            data: {
+                courseList: [
+                    {
+                        name: 'Web前端开发之JavaScript(Js)精英课堂【渡一教育】',
+                        free: true,
+                        price: 0,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLBsSud06XlZnJACsTWd7OSA5phIFPRTNibFBeuT8jRjy00Jb5ticSEKYUnpUYdBCicH2U/356'
+                    },
+                    {
+                        name: 'Web前端开发之HTML+CSS精英课堂【渡一教育】',
+                        free: true,
+                        price: 0,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLBDFLdArBwf70PjMrL6bq0OI9LesEsskk1iamJKibriaic0QkBZhINoDuN0DicaojkqyQjk/356'
+                    },
+                    {
+                        name: '淘宝商城项目实战开发【渡一教育】',
+                        free: true,
+                        price: 0,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLDBpXKL1sgAOKcbSz0Od2abiaqdJibiaDDQWfmrVNBCFrIpbTQKlNyWbPg5Uo1dnT7Znk/356'
+                    },
+                    {
+                        name: 'React顶级企业实战，全流程制作淘票票WebApp【渡一教育】',
+                        free: false,
+                        price: 399,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLB2CyXIxsb8iaAUibBB9mzlkSgKNU7GiciaYxG1SicoLjkiahZ3ia54eZWbtCGDkFyvMo0uKk/356'
+                    },
+                    {
+                        name: '原生JS贪吃蛇游戏实战开发【渡一教育】',
+                        free: true,
+                        price: 0,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLCfsOGnxjhUXFA6SHMOu0fMUicuucRlIVNo9zBnnLiacovMnePD6586QlRj2qvwudbn8/356'
+                    },
+                    {
+                        name: 'React顶级企业实战，全流程制作淘票票WebApp【渡一教育】',
+                        free: false,
+                        price: 399,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLB2CyXIxsb8iaAUibBB9mzlkSgKNU7GiciaYxG1SicoLjkiahZ3ia54eZWbtCGDkFyvMo0uKk/356'
+                    },
+                    {
+                        name: '原生JS扫雷游戏实战开发【渡一教育】',
+                        free: true,
+                        price: 0,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLDaTljUSVGk2eqS1MCT3DwDqxgs7KhfMf3411SXQkRvmiaicIuz47ydO27zGPWK97wicw/356'
+                    },
+                    {
+                        name: '你不知道的Javascript【渡一教育】',
+                        free: true,
+                        price: 0,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLCelo2lyibtrxDia7aq7tC0LE1Lcz2LVoDqhQy5tnOHicTzWhLuvPekL35rEmwTdgNuwI/356'
+                    }
+                ]
+                
+            }
+        })
+    </script>
+</body>
+
+</html>
